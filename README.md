@@ -13,7 +13,7 @@ pip install pipenv
 pipenv shell
 
 # install deps
-pipenv sync
+pipenv sync --dev
 ```
 
 ### Additional
