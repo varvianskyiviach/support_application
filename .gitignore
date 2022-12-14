@@ -1,2 +1,14 @@
-*.sqlite3
+# Environment veriables
+.env/
+
+
+# Python stuff
 __pycache__/
+
+
+# SQLite database
+*.sqlite3
+
+
+# VSCode
+.vscode/
