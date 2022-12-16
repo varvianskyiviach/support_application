@@ -4,6 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+Django = "~=4.1.4"
 
 [dev-packages]
 black = "~=22.12.0"

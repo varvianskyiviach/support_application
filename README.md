@@ -25,6 +25,12 @@ pipenv lock
 # pipenv lock & pipenv sync
 pipenv update
 ```
+## Usage code quality tools
+The pre-commit hook will be automatically run
+
+You can use the code quality checkers on GitHub CI
+
+
 
 ### Download
 
