@@ -13,16 +13,17 @@ ALLOWED_HOSTS = getenv("DJANGO_ALLOWED_HOSTS", default="").split(",")
 
 # Application definition
 
-INSTALLED_APPS = [
+DJANGO_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "exchange_rates",
-    "users",
 ]
+LOCAL_APPS = ["exchange_rates", "users", "core", "comments", "tickets"]
+
+INSTALLED_APPS = LOCAL_APPS + DJANGO_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
