@@ -1,3 +1,9 @@
-# from django.contrib import admin
+from django.contrib import admin
 
-# Register your models here.
+from shared.django import TimeStampReadonlyAdmin
+from tickets.models import Ticket
+
+
+@admin.register(Ticket)
+class TicketsAdmin(TimeStampReadonlyAdmin):
+    pass
