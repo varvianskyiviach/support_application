@@ -27,7 +27,10 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("password", models.CharField(max_length=128, verbose_name="password")),
+                (
+                    "password",
+                    models.CharField(max_length=128, verbose_name="password"),
+                ),
                 (
                     "last_login",
                     models.DateTimeField(
@@ -67,7 +70,10 @@ class Migration(migrations.Migration):
                     "is_staff",
                     models.BooleanField(default=False, verbose_name="staff status"),
                 ),
-                ("is_active", models.BooleanField(default=True, verbose_name="active")),
+                (
+                    "is_active",
+                    models.BooleanField(default=True, verbose_name="active"),
+                ),
                 (
                     "date_joined",
                     models.DateTimeField(
