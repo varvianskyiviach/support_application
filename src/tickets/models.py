@@ -18,5 +18,5 @@ class Ticket(TimeStampMixin):
         related_name="manager_tickets",
     )
 
-    heder = models.CharField(max_length=255)
+    header = models.CharField(max_length=255)
     body = models.TextField()
