@@ -1,7 +1,7 @@
+from datetime import timedelta
 from os import getenv
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 SRC_DIR = Path(__file__).resolve().parent.parent
 ROOT_DIR = SRC_DIR.parent
 
@@ -23,9 +23,7 @@ DJANGO_APPS = [
 ]
 LOCAL_APPS = ["exchange_rates", "users", "core", "comments", "tickets"]
 
-THIRD_PARTY_APPS = [
-    "rest_framework",
-]
+THIRD_PARTY_APPS = ["rest_framework", "rest_framework_simplejwt"]
 
 INSTALLED_APPS = LOCAL_APPS + DJANGO_APPS + THIRD_PARTY_APPS
 
@@ -120,3 +118,23 @@ ALPHA_VANTAGE_BASE_URL = getenv(
     "DJANGO_ALPHA_VANTAGE_BASE_URL", default="https://www.alphavantage.co"
 )
 ALPHA_VANTAGE_API_KEY = getenv("DJANGO_ALPHA_VANTAGE_API_KEY")
+
+# DRF configuration
+
+REST_FRAMEWORK = {
+    "DEFAULT_RENDERER_CLASSES": ("rest_framework.renderers.JSONRenderer",),
+    "DEFAULT_PARSER_CLASSES": [
+        "rest_framework.parsers.JSONParser",
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+    ],
+}
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "AUTH_HEADER_TYPES": ("Bearer",),
+}

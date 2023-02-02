@@ -1,17 +1,7 @@
-from django.contrib.auth import get_user_model
-from django.urls import path
-from rest_framework.generics import CreateAPIView
+from rest_framework.routers import DefaultRouter
 
-from users.serializers import UserSerializer
+from users.api import UserAPISet
 
-User = get_user_model()
-
-
-class UserCreateAPI(CreateAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-
-
-urlpatterns = [
-    path("", UserCreateAPI.as_view()),
-]
+router = DefaultRouter()
+router.register(r"users", UserAPISet, basename="users")
+urlpatterns = router.urls
