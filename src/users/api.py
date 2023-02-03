@@ -1,22 +1,25 @@
 from django.http import JsonResponse
 from rest_framework import status
+from rest_framework.permissions import AllowAny
 from rest_framework.viewsets import ViewSet
 
 from shared.django import ResponceMultiSerializer, ResponceSerializer
-from tickets.models import Ticket
-from tickets.serializers import TicketLightSerializer, TicketSerializer
+from users.models import User
+from users.serializers import UserSerializer, UserUpdateSerializer
 
 
-class TicketAPISet(ViewSet):
+class UserAPISet(ViewSet):
+    permission_classes = [AllowAny]
+
     def list(self, request):
-        queryset = Ticket.objects.all()
-        serializer = TicketSerializer(queryset, many=True)
+        queryset = User.objects.all()
+        serializer = UserSerializer(queryset, many=True)
         responce = ResponceMultiSerializer({"results": serializer.data})
         return JsonResponse(responce.data)
 
     def retrieve(self, request, pk):
-        instance = Ticket.objects.get(id=pk)
-        serializer = TicketLightSerializer(instance)
+        instance = User.objects.get(id=pk)
+        serializer = UserSerializer(instance)
         responce = ResponceSerializer({"result": serializer.data})
         return JsonResponse(responce.data)
 
@@ -24,7 +27,7 @@ class TicketAPISet(ViewSet):
         context: dict = {
             "request": self.request,
         }
-        serializer = TicketSerializer(data=request.data, context=context)
+        serializer = UserSerializer(data=request.data, context=context)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         responce = ResponceSerializer({"result": serializer.data})
@@ -34,8 +37,8 @@ class TicketAPISet(ViewSet):
         context: dict = {
             "request": self.request,
         }
-        queryset = Ticket.objects.get(id=pk)
-        serializer = TicketSerializer(queryset, data=request.data, context=context)
+        instance = User.objects.get(id=pk)
+        serializer = UserUpdateSerializer(instance, data=request.data, context=context)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         responce = ResponceSerializer({"result": serializer.data})
