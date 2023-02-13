@@ -11,6 +11,18 @@ class Comment(TimeStampMixin):
         on_delete=models.DO_NOTHING,
         related_name="comments",
     )
-    ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE)
+    ticket = models.ForeignKey(
+        Ticket, on_delete=models.CASCADE, related_name="comments"
+    )
+    prev_comment = models.ForeignKey(
+        "self",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="next",
+    )
 
     body = models.TextField()
+
+    def __str__(self) -> str:
+        return str(self.body)
