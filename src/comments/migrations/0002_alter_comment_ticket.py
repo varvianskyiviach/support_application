@@ -15,8 +15,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="comment",
             name="ticket",
-            field=models.ForeignKey(
-                on_delete=django.db.models.deletion.CASCADE, to="tickets.ticket"
-            ),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to="tickets.ticket"),
         ),
     ]
