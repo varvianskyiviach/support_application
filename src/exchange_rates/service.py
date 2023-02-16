@@ -7,8 +7,8 @@ class PostRequest(BaseModel):
 
 
 class ExchangeRatesResults(BaseModel):
-    # from_currency: str = Field(alias="1. From_Currency Code")
-    # to_currency: str = Field(alias="3. To_Currency Code")
+    from_currency: str = Field(alias="1. From_Currency Code")
+    to_currency: str = Field(alias="3. To_Currency Code")
     exchange_rate: float = Field(alias="5. Exchange Rate")
 
 
