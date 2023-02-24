@@ -1,15 +1,32 @@
 version: "3"
 
 services:
-  support:
-    image: postgres:14.7-alpine
-    container_name: db_postgres
+  postgres:
+    image: postgres:14
+    container_name: support_db
     env_file: ".env"
     ports:
       - 5432:5432
     volumes:
       - pg_data:/var/lib/postgresql/data
 
-      
+
+  app:
+    stdin_open: true
+    tty: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: support_backend
+    container_name: support_app
+    env_file: ".env"
+    depends_on:
+      - "postgres"
+    volumes:
+      - ".:/app/"
+    ports:
+      - "8000:8000"
+
+
 volumes:
   pg_data: {}
