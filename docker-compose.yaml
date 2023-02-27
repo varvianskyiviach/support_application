@@ -17,6 +17,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    command: "gunicorn src.config.wsgi -c gunicorn_config.py"
     image: support_backend
     container_name: support_app
     env_file: ".env"
