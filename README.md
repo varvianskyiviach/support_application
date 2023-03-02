@@ -18,7 +18,7 @@ pipenv sync --dev
 ### <span style='color:yellow'>Collecting static files</span>
 ```bash
 # copy all static files to the directory "staticfiles" 
-python src\manage.py collectstatic
+python src/manage.py collectstatic
 ```
 ### Additional
 
