@@ -104,7 +104,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 
-STATIC_ROOT = SRC_DIR / "staticfiles"
+STATIC_ROOT = ROOT_DIR / "staticfiles"
 STATIC_URL = "static/"
 
 # Default primary key field type
