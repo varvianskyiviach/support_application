@@ -81,6 +81,13 @@ docker-compose logs -f app
     - Option 1 from - [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04)
 
     - Option 2 from - [Docker](https://docs.docker.com/engine/install/ubuntu/)
+    - Option 3 <span style='color:green'>(recommend)</span> - This example downloads the script from https://get.docker.com/ and runs it to install the latest stable release of Docker on Linux:
+        ``` bash
+        $curl -fsSL https://get.docker.com -o get-docker.sh
+        $sudo sh get-docker.sh
+        ```
+
+
 
 4. Intro your Droplet Generate and add to Git hub SSH key [tap](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 
