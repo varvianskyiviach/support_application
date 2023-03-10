@@ -24,7 +24,7 @@ DJANGO_APPS = [
 ]
 LOCAL_APPS = ["exchange_rates", "users", "core", "comments", "tickets", "authentication"]
 
-THIRD_PARTY_APPS = ["rest_framework", "rest_framework_simplejwt"]
+THIRD_PARTY_APPS = ["rest_framework", "rest_framework_simplejwt", "drf_yasg"]
 
 INSTALLED_APPS = LOCAL_APPS + DJANGO_APPS + THIRD_PARTY_APPS
 
