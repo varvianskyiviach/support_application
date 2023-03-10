@@ -31,15 +31,16 @@ services:
   
   nginx:
     image: nginx:1.23.3
+    container_name: support_nginx
     ports:
       - "80:80"
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx.conf:/etc/nginx/conf.d/nginx.conf
       - ./staticfiles:/usr/share/nginx/html/static
     depends_on:
       - app
 
 
 volumes:
-  pg_data:
-  staticfiles:
+  pg_data: {}
+  staticfiles: {}
