@@ -94,11 +94,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 
 LANGUAGE_CODE = "en-us"
-
 TIME_ZONE = "UTC"
-
 USE_I18N = True
-
 USE_TZ = True
 
 
@@ -107,15 +104,19 @@ USE_TZ = True
 STATIC_ROOT = ROOT_DIR / "staticfiles"
 STATIC_URL = "static/"
 
+
 # Default primary key field type
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
 
 # Set our user model
 
 AUTH_USER_MODEL = "users.User"
 
+
 # Exchange rates service settings (Alpha Vantage)
+
 ALPHA_VANTAGE_BASE_URL = getenv("DJANGO_ALPHA_VANTAGE_BASE_URL", default="https://www.alphavantage.co")
 ALPHA_VANTAGE_API_KEY = getenv("DJANGO_ALPHA_VANTAGE_API_KEY")
 
@@ -134,3 +135,7 @@ SIMPLE_JWT = {
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
     "AUTH_HEADER_TYPES": ("Bearer",),
 }
+
+# Celery configuration
+
+CELERY_BROKER_URL = getenv("REDIS_URL", default="redis://redis:6379/0")
