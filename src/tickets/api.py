@@ -6,6 +6,7 @@ from shared.django import ResponceMultiSerializer, ResponceSerializer
 from tickets.models import Ticket
 from tickets.permissions import IsOwner, RoleIsAdmin, RoleIsManager, RoleIsUser
 from tickets.serializers import TicketLightSerializer, TicketSerializer
+from tickets.tasks import demo_task
 
 
 class TicketAPISet(ModelViewSet):
@@ -31,6 +32,10 @@ class TicketAPISet(ModelViewSet):
         return [permission() for permission in permission_classes]
 
     def list(self, request):
+
+        for _ in range(15):
+            demo_task.delay("Task-test")
+
         queryset = self.filter_queryset(self.get_queryset())
         serializer = self.get_serializer(queryset, many=True)
         responce = ResponceMultiSerializer({"results": serializer.data})

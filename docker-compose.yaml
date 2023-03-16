@@ -11,29 +11,47 @@ services:
       - pg_data:/var/lib/postgresql/data
 
 
+  redis:
+    image: redis:7.0.9
+    container_name: support_redis
+    ports:
+      - 6379:6379
+
+
   app:
     stdin_open: true
     tty: true
     build:
       context: .
       dockerfile: Dockerfile
-    command: "gunicorn src.config.wsgi -c gunicorn_config.py"
+    command: gunicorn src.config.wsgi -c gunicorn_config.py
     image: support_backend
     container_name: support_app
-    env_file: ".env"
+    env_file: .env
     depends_on:
-      - "postgres"
+      - postgres
     volumes:
-      - ".:/app/"
+      - .:/app/
     ports:
-      - "8000:8000"
+      - 8000:8000
+
   
+  worker:
+    build:
+      context: .
+    command: celery -A config worker -l info
+    container_name: support_worker
+    depends_on:
+      - redis
+    volumes:
+      - ./src:/app/
+
   
   nginx:
     image: nginx:1.23.3
     container_name: support_nginx
     ports:
-      - "80:80"
+      - 80:80
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/nginx.conf
       - ./staticfiles:/usr/share/nginx/html/static
@@ -42,5 +60,5 @@ services:
 
 
 volumes:
-  pg_data: {}
-  staticfiles: {}
+  pg_data:
+  staticfiles:
